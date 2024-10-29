@@ -5,8 +5,7 @@
 import { Button, createTheme, CssBaseline, ThemeProvider, Typography, useMediaQuery } from '@mui/material';
 
 import './App.css';
-
-import { ThemeMode } from './theme/types/constants.ts';
+import { ThemeMode } from './theme/types/enums.ts';
 
 const muiTypography = {
   fontFamily: '"Roboto Flex", sans-serif',
