@@ -7,7 +7,9 @@ import { configs } from '@/mock/configurations.ts';
 const MainSection = () => {
   return (
     <Container sx={{ mt: 6 }}>
-      <Typography variant="h4">Available Configurations</Typography>
+      <Typography variant="h4" mb={4}>
+        Available Configurations
+      </Typography>
 
       <Stack spacing={3}>
         {configs.map((config) => (
@@ -20,12 +22,24 @@ const MainSection = () => {
 
               <Stack whiteSpace="pre">
                 <Typography mb={1}>CPU:</Typography>
-                <Typography mt="auto">{config.cpu.model}</Typography>
+                <Stack mt="auto">
+                  <Typography>{config.cpu.model}</Typography>
+                  <Stack direction="row" spacing={1}>
+                    <Typography>{config.cpu.info[0]}</Typography>
+                    <Typography>{config.cpu.info[1]}</Typography>
+                  </Stack>
+                </Stack>
               </Stack>
 
               <Stack whiteSpace="pre">
                 <Typography mb={1}>Storage:</Typography>
-                <Typography mt="auto">{config.storage.model}</Typography>
+                <Stack mt="auto">
+                  <Typography>{config.storage.model}</Typography>
+                  <Stack direction="row" spacing={1}>
+                    <Typography>{config.storage.info[0]}</Typography>
+                    <Typography>{config.storage.info[1]}</Typography>
+                  </Stack>
+                </Stack>
               </Stack>
 
               <Stack whiteSpace="pre">
