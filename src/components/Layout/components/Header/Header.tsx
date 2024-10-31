@@ -1,12 +1,12 @@
-import { Container, Stack } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
+import { Container, Stack } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
-import { Logo as LogoIcon } from '../components/icons';
+import { Logo as LogoIcon } from '../../../icons';
 
-const BaseView = () => {
+const Header = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="lg">
@@ -32,4 +32,4 @@ const BaseView = () => {
   );
 };
 
-export default BaseView;
+export default Header;

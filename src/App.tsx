@@ -1,12 +1,8 @@
-// import { useState } from 'react';
-// import reactLogo from './assets/react.svg';
-// import viteLogo from '/vite.svg';
-
 import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material';
 
 import './App.css';
 import { ThemeMode } from './theme/types/enums.ts';
-import BaseView from './view';
+import Layout from './components/Layout';
 
 const muiTypography = {
   fontFamily: '"Roboto Flex", sans-serif',
@@ -52,19 +48,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BaseView />
-      {/*<Typography variant="h1" sx={{ fontWeight: 'fontWeightExtraBold' }}>*/}
-      {/*  Vast AI*/}
-      {/*</Typography>*/}
-
-      {/*<Button*/}
-      {/*  type="button"*/}
-      {/*  sx={{ background: '#7F6BB5', borderRadius: 0 }}*/}
-      {/*  variant="contained"*/}
-      {/*  onClick={() => console.log('btn click')}*/}
-      {/*>*/}
-      {/*  Click me*/}
-      {/*</Button>*/}
+      <Layout />
     </ThemeProvider>
   );
 }
