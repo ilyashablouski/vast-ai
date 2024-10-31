@@ -8,9 +8,9 @@ import { Logo as LogoIcon } from '@components/icons';
 
 const Header = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Stack direction="row" alignItems="center">
             <LogoIcon />
 
@@ -25,7 +25,9 @@ const Header = () => {
             </Typography>
           </Stack>
 
-          <Button color="inherit">Login</Button>
+          <Button variant="contained" color="inherit">
+            Login
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
