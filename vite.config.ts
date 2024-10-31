@@ -3,13 +3,16 @@ import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
 
 // https://vite.dev/config/
+
+const root = resolve(__dirname, 'src');
+
 export default defineConfig({
+  plugins: [react()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
-      '@assets': resolve(__dirname, './src/assets'),
-      '@components': resolve(__dirname, './src/components'),
+      '@': resolve(root),
+      '@assets': resolve(root, 'assets'),
+      '@components': resolve(root, 'components'),
     },
   },
-  plugins: [react()],
 });

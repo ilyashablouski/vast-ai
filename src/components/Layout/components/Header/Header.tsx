@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-import { Logo as LogoIcon } from '../../../icons';
+import { Logo as LogoIcon } from '@components/icons';
 
 const Header = () => {
   return (
