@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, FC } from 'react';
 import { Box, Modal } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-const ModalWindow = ({ isOpen, setOpen, title, children }: IModalWindowProps) => {
+const ModalWindow: FC<IModalWindowProps> = ({ isOpen, setOpen, title, children }) => {
   const handleClose = () => setOpen(false);
 
   return (
