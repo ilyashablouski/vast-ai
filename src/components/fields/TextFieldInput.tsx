@@ -1,11 +1,7 @@
 import { FC } from 'react';
 import { TextField, useTheme } from '@mui/material';
 
-import {
-  HookFormErrorType,
-  HookFormFieldType,
-  IFormFieldParams,
-} from '@components/SignForm/SignForm.types.ts';
+import { HookFormErrorType, HookFormFieldType, IFormFieldParams } from '@components/SignForm/types.ts';
 
 interface TextInputProps {
   hookFormField: HookFormFieldType;
