@@ -56,18 +56,18 @@ const renderFieldWithController = (
 
 const SignForm: FC = () => {
   const defaultValues = getFormDefaultValuesFromConfig(formFields);
-
-  const onSubmit = (data: any) => {
-    console.log('Sumbitted data:', data);
-  };
+  console.log('defaultValues: ', defaultValues);
 
   const hookForm = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
     defaultValues,
   });
-
   const { control, handleSubmit } = hookForm;
+
+  const onSubmit = (data: object) => {
+    console.log('Sumbitted data:', data);
+  };
 
   return (
     <Stack component="form" direction="column" spacing={3} onSubmit={handleSubmit(onSubmit)}>

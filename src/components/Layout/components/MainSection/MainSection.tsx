@@ -12,8 +12,8 @@ const MainSection = () => {
       </Typography>
 
       <Stack spacing={3}>
-        {configs.map((config) => (
-          <Card sx={{ p: 3, minHeight: '111px' }}>
+        {configs.map((config, index) => (
+          <Card sx={{ p: 3, minHeight: '111px' }} key={index}>
             <Stack direction="row" spacing={7} justifyContent="space-between">
               <Stack>
                 <Typography mb={2}>{config.general.name}</Typography>
