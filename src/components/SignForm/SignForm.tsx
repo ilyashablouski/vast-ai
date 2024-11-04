@@ -1,5 +1,6 @@
 import { FC, ReactElement } from 'react';
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import { Control, Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -56,7 +57,6 @@ const renderFieldWithController = (
 
 const SignForm: FC = () => {
   const defaultValues = getFormDefaultValuesFromConfig(formFields);
-  console.log('defaultValues: ', defaultValues);
 
   const hookForm = useForm({
     resolver: yupResolver(schema),
@@ -66,17 +66,32 @@ const SignForm: FC = () => {
   const { control, handleSubmit } = hookForm;
 
   const onSubmit = (data: object) => {
-    console.log('Sumbitted data:', data);
+    console.log('Submitted data:', data);
   };
 
   return (
-    <Stack component="form" direction="column" spacing={3} onSubmit={handleSubmit(onSubmit)}>
-      {formFields.map((formField) => {
-        return renderFieldWithController(formField, control, ({ field }) =>
-          getFieldRender(hookForm, field, formField),
-        );
-      })}
-    </Stack>
+    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Stack direction="column" spacing={3} mt={4}>
+        {formFields.map((formField) => {
+          return renderFieldWithController(formField, control, ({ field }) =>
+            getFieldRender(hookForm, field, formField),
+          );
+        })}
+      </Stack>
+
+      <LoadingButton
+        id="signFormSubmitBtn"
+        type="submit"
+        variant="contained"
+        color="primary"
+        size="large"
+        // loading={mutation.isLoading}
+        fullWidth
+        sx={{ mt: 4 }}
+      >
+        SIGN UP
+      </LoadingButton>
+    </Box>
   );
 };
 
