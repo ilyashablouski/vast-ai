@@ -1,10 +1,10 @@
-import React, { Dispatch, FC } from 'react';
+import React, { FC } from 'react';
 import { Box, Modal } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 interface IModalWindowProps {
   isOpen: boolean;
-  setOpen: Dispatch<React.SetStateAction<boolean>>;
+  toggleModal: (payload: boolean) => void;
   title: string;
   children: React.ReactNode;
 }
@@ -21,8 +21,8 @@ const style = {
   p: 4,
 };
 
-const ModalWindow: FC<IModalWindowProps> = ({ isOpen, setOpen, title, children }) => {
-  const handleClose = () => setOpen(false);
+const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, children }) => {
+  const handleClose = () => toggleModal(false);
 
   return (
     <Modal open={isOpen} onClose={handleClose} aria-labelledby="modal-modal-title">

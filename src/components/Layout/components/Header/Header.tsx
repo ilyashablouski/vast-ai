@@ -5,8 +5,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { Logo as LogoIcon } from '@components/icons';
+import useGlobalContext from '@/store/context.tsx';
 
 const Header = () => {
+  const { toggleModal } = useGlobalContext();
+
   return (
     <AppBar position="sticky">
       <Container maxWidth="lg">
@@ -25,7 +28,7 @@ const Header = () => {
             </Typography>
           </Stack>
 
-          <Button variant="contained" color="inherit">
+          <Button variant="contained" color="inherit" onClick={() => toggleModal(true)}>
             Login
           </Button>
         </Toolbar>

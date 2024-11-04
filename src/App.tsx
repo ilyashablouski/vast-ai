@@ -3,6 +3,7 @@ import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/mat
 import './App.css';
 import { ThemeMode } from '@/theme/types/enums.ts';
 import Layout from '@components/Layout';
+import { GlobalProvider } from '@/store';
 
 const muiTypography = {
   fontFamily: '"Roboto Flex", sans-serif',
@@ -48,7 +49,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout />
+
+      <GlobalProvider>
+        <Layout />
+      </GlobalProvider>
     </ThemeProvider>
   );
 }
