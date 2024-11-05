@@ -3,8 +3,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { configs } from '@/mock/configurations.ts';
+import useGlobalContext from '@/store/context.tsx';
 
 const MainSection = () => {
+  const { toggleModal } = useGlobalContext();
+
   return (
     <Container sx={{ mt: 6 }}>
       <Typography variant="h4" mb={4}>
@@ -54,7 +57,12 @@ const MainSection = () => {
                 <Typography mb={1.5} textAlign="right">
                   $&nbsp;{config.rent}/hr
                 </Typography>
-                <Button variant="contained" size="small" sx={{ mt: 'auto' }}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{ mt: 'auto' }}
+                  onClick={() => toggleModal(true)}
+                >
                   Rent
                 </Button>
               </Stack>

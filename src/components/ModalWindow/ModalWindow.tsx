@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
-import { Box, Modal } from '@mui/material';
+import { Box, IconButton, Modal } from '@mui/material';
 import Typography from '@mui/material/Typography';
+
+import { Cross as CrossIcon } from '@components/icons';
 
 interface IModalWindowProps {
   isOpen: boolean;
@@ -31,6 +33,10 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
         <Typography id="modal-modal-title" variant="h6" component="h2">
           {title}
         </Typography>
+
+        <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 20, right: 18 }}>
+          <CrossIcon />
+        </IconButton>
 
         {children}
       </Box>

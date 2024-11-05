@@ -2,40 +2,12 @@ import { FC, ReactElement } from 'react';
 import { Box, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { Control, Controller, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import TextFieldInput from '@components/fields';
 import { HookFormFieldType, HookFormType, IFormFieldParams } from '@components/SignForm/types.ts';
 import { getFormDefaultValuesFromConfig } from '@components/SignForm/helpers.ts';
-
-const schemaFieldsValidation = {};
-
-const schema = yup.object(schemaFieldsValidation);
-
-const formFields: IFormFieldParams[] = [
-  {
-    type: 'email',
-    name: 'email',
-    id: 'emailInput',
-    label: 'Email',
-    defaultValue: '',
-  },
-  {
-    type: 'text',
-    name: 'password',
-    id: 'passwordInput',
-    label: 'Password',
-    defaultValue: '',
-  },
-  {
-    type: 'tel',
-    name: 'phone',
-    id: 'phoneInput',
-    label: 'Phone number',
-    defaultValue: '',
-  },
-];
+import { formFields, yupSchema } from '@components/SignForm/settings.ts';
 
 const getFieldRender = (
   hookForm: HookFormType,
@@ -59,7 +31,7 @@ const SignForm: FC = () => {
   const defaultValues = getFormDefaultValuesFromConfig(formFields);
 
   const hookForm = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(yupSchema),
     mode: 'all',
     defaultValues,
   });
