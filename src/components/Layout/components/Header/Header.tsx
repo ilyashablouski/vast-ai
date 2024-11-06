@@ -28,7 +28,7 @@ const Header = () => {
             </Typography>
           </Stack>
 
-          <Button variant="contained" color="inherit" onClick={() => toggleModal(true)}>
+          <Button variant="contained" color="secondary" onClick={() => toggleModal(true)}>
             Login
           </Button>
         </Toolbar>

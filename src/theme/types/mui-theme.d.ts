@@ -15,3 +15,9 @@ declare module '@mui/material/Typography' {
     fontWeightExtraBold: true;
   }
 }
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    stroke: true;
+  }
+}

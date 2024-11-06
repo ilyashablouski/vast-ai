@@ -1,50 +1,23 @@
-import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material';
+import { CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material';
 
 import './App.css';
-import { ThemeMode } from '@/theme/types/enums.ts';
+import { THEMES } from '@/theme/types/enums.ts';
 import Layout from '@components/Layout';
 import { GlobalProvider } from '@/store';
+import { createTheme } from '@/theme';
 
-const muiTypography = {
-  fontFamily: '"Roboto Flex", sans-serif',
-  fontWeightLight: 100,
-  fontWeightRegular: 300,
-  fontWeightMedium: 400,
-  fontWeightBold: 700,
-  fontWeightExtraBold: 900,
-};
-
-const lightTheme = createTheme({
-  typography: muiTypography,
-  palette: {
-    mode: ThemeMode.LIGHT,
-    background: {
-      default: '#F3EFF8',
-      paper: '#f4f4f4',
-    },
-    text: {
-      primary: '#000000',
-    },
-  },
-});
-
-const darkTheme = createTheme({
-  typography: muiTypography,
-  palette: {
-    mode: ThemeMode.DARK,
-    background: {
-      default: '#151218',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-    },
-  },
-});
+const createMuiTheme = (theme: THEMES) =>
+  createTheme({
+    direction: 'ltr',
+    responsiveFontSizes: true,
+    roundedCorners: true,
+    theme,
+    locale: 'en',
+  });
 
 function App() {
-  const isDarkMode = useMediaQuery(`(prefers-color-scheme: ${ThemeMode.DARK})`);
-  const theme = isDarkMode ? darkTheme : lightTheme;
+  const isDarkMode = useMediaQuery(`(prefers-color-scheme: ${THEMES.DARK})`);
+  const theme = createMuiTheme(isDarkMode ? THEMES.DARK : THEMES.LIGHT);
 
   return (
     <ThemeProvider theme={theme}>
