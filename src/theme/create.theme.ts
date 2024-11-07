@@ -27,11 +27,23 @@ const baseOptions: ThemeOptions = {
           fontStyle: 'normal',
           boxSizing: 'border-box',
         },
+        sizeSmall: {
+          lineHeight: '16.41px',
+          fontSize: '0.875rem',
+          fontWeight: '900',
+          height: '32px',
+        },
         sizeMedium: {
-          lineHeight: '18px',
-          fontSize: '0.813rem',
-          fontWeight: '600',
-          height: '50px',
+          lineHeight: '16.41px',
+          fontSize: '0.875rem',
+          fontWeight: '900',
+          height: '40px',
+        },
+        sizeLarge: {
+          lineHeight: '16.41px',
+          fontSize: '0.875rem',
+          fontWeight: '900',
+          height: '56px',
         },
       },
       variants: [
