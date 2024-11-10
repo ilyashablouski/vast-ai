@@ -9,8 +9,8 @@ const MainSection = () => {
   const { toggleModal } = useGlobalContext();
 
   return (
-    <Container sx={{ mt: 6 }}>
-      <Typography variant="h4" mb={4}>
+    <Container sx={{ mt: 6 }} maxWidth="lg">
+      <Typography variant="h1" mb={4}>
         Available Configurations
       </Typography>
 
@@ -63,7 +63,7 @@ const MainSection = () => {
                   sx={{ mt: 'auto' }}
                   onClick={() => toggleModal(true)}
                 >
-                  Rent
+                  RENT
                 </Button>
               </Stack>
             </Stack>

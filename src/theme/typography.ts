@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material/styles/createTypography';
+import { TypographyOptions } from '@mui/material/styles/createTypography';
 
-export const typography: Partial<Typography> = {
+const typography: TypographyOptions = {
   fontFamily:
     '"Roboto Flex",-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
   fontWeightLight: 100,
@@ -9,9 +9,9 @@ export const typography: Partial<Typography> = {
   fontWeightBold: 700,
   fontWeightExtraBold: 900,
   h1: {
+    fontSize: '2rem',
     fontWeight: 700,
     lineHeight: 1.17,
-    fontSize: '2rem',
   },
   h2: {
     fontSize: '1.5rem',
@@ -34,3 +34,5 @@ export const typography: Partial<Typography> = {
     lineHeight: 1.17,
   },
 };
+
+export default typography;

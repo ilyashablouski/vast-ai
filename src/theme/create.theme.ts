@@ -1,12 +1,18 @@
 import merge from 'lodash/merge';
-import { createTheme as createThemeMUI, darken, responsiveFontSizes } from '@mui/material/styles';
-import type { Direction, Theme, ThemeOptions } from '@mui/material';
+import {
+  createTheme as createThemeMUI,
+  darken,
+  responsiveFontSizes,
+  ThemeOptions,
+} from '@mui/material/styles';
+import type { Direction, Theme } from '@mui/material';
 import { enUS, ruRU } from '@mui/material/locale';
 import { Shadows } from '@mui/material/styles/shadows';
 
 import { THEMES } from './types/enums';
-import { typography } from './typography';
 import { darkPalette, lightPalette } from '@/theme/palettes.ts';
+import typography from '@/theme/typography.ts';
+import { addResponsiveThemeStyles } from '@/theme/helpers.ts';
 
 interface ThemeConfig {
   theme: THEMES;
@@ -217,6 +223,15 @@ const baseOptions: ThemeOptions = {
     },
   },
   shadows: Array(25).fill('none') as Shadows,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 768,
+      lg: 1032,
+      xl: 1440,
+    },
+  },
 };
 
 const themesOptions: Record<THEMES, ThemeOptions> = {
@@ -258,6 +273,8 @@ export const createTheme = (config: ThemeConfig = { theme: THEMES.LIGHT }): Them
   if (config.responsiveFontSizes) {
     theme = responsiveFontSizes(theme);
   }
+
+  addResponsiveThemeStyles(theme);
 
   return theme;
 };
