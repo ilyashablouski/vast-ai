@@ -14,4 +14,9 @@ export const addResponsiveThemeStyles = (theme: Theme) => {
       fontSize: '2rem',
     },
   };
+  theme.typography.h2 = {
+    [up(MEDIA.XS)]: {
+      fontSize: '1.5rem',
+    },
+  };
 };

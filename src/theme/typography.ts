@@ -24,12 +24,12 @@ const typography: TypographyOptions = {
     lineHeight: 1.17,
   },
   body1: {
-    fontSize: '0.8rem',
+    fontSize: '0.875rem',
     fontWeight: 400,
     lineHeight: 1.17,
   },
   body2: {
-    fontSize: '0.7rem',
+    fontSize: '0.75rem',
     fontWeight: 500,
     lineHeight: 1.17,
   },

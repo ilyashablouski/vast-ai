@@ -221,6 +221,15 @@ const baseOptions: ThemeOptions = {
         },
       },
     },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          fontSize: 'inherit',
+          width: 'initial',
+          height: 'initial',
+        },
+      },
+    },
   },
   shadows: Array(25).fill('none') as Shadows,
   breakpoints: {
