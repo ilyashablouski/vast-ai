@@ -1,6 +1,5 @@
 import AppBar from '@mui/material/AppBar';
 import { Container, Stack } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
@@ -12,8 +11,8 @@ const Header = () => {
 
   return (
     <AppBar position="sticky">
-      <Container maxWidth="lg">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+      <Container maxWidth="lg" sx={{ boxSizing: 'content-box' }}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" height="64px">
           <Stack direction="row" alignItems="center">
             <LogoIcon />
 
@@ -31,7 +30,7 @@ const Header = () => {
           <Button variant="contained" color="secondary" onClick={() => toggleModal(true)}>
             Login
           </Button>
-        </Toolbar>
+        </Stack>
       </Container>
     </AppBar>
   );

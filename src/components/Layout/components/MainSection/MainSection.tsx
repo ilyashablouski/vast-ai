@@ -11,14 +11,14 @@ const MainSection = () => {
   const { toggleModal } = useGlobalContext();
 
   return (
-    <Container sx={{ mt: 6 }} maxWidth="lg">
+    <Container sx={{ mt: 6, boxSizing: 'content-box' }} maxWidth="lg">
       <Typography variant="h1" mb={4}>
         Available Configurations
       </Typography>
 
       <Stack spacing={3}>
         {configs.map((config, index) => (
-          <Card sx={{ p: 3, minHeight: '111px' }} key={index}>
+          <Card sx={{ p: 3 }} key={index}>
             <Stack direction="row" spacing={7} justifyContent="space-between">
               <Stack>
                 <Typography variant="h2" mb={2}>
