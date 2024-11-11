@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { ArrowUp as ArrowUpIcon } from '@/components/icons';
 import { ArrowDown as ArrowDownIcon } from '@/components/icons';
+import { Geo as GeoIcon } from '@/components/icons';
 
 import { configs } from '@/mock/configurations.ts';
 import useGlobalContext from '@/store/context.tsx';
@@ -11,7 +12,7 @@ const MainSection = () => {
   const { toggleModal } = useGlobalContext();
 
   return (
-    <Container sx={{ mt: 6, boxSizing: 'content-box' }} maxWidth="lg">
+    <Container sx={{ mt: 6, pb: 6, boxSizing: 'content-box' }} maxWidth="lg">
       <Typography variant="h1" mb={4}>
         Available Configurations
       </Typography>
@@ -24,7 +25,11 @@ const MainSection = () => {
                 <Typography variant="h2" mb={2}>
                   {config.general.name}
                 </Typography>
-                <Typography mt="auto">{config.general.place}</Typography>
+
+                <Stack mt="auto" direction="row" alignItems="center">
+                  <GeoIcon sx={{ mr: 0.5 }} />
+                  <Typography>{config.general.place}</Typography>
+                </Stack>
               </Stack>
 
               <Stack whiteSpace="pre">
@@ -57,15 +62,17 @@ const MainSection = () => {
                 <Typography variant="h3" sx={{ mb: 1, opacity: 0.5 }}>
                   Connection:
                 </Typography>
+
                 <Stack mt="auto" spacing="4px">
-                  <Typography color="info" display="inline-flex">
-                    <ArrowUpIcon fontSize="inherit" sx={{ mr: 0.5 }} />
-                    {config.connection.upload}&nbsp;Mbps
-                  </Typography>
-                  <Typography color="success" display="inline-flex">
-                    <ArrowDownIcon fontSize="inherit" sx={{ mr: 0.5 }} />
-                    {config.connection.download}&nbsp;Mbps
-                  </Typography>
+                  <Stack direction="row" alignItems="center" color="info.main">
+                    <ArrowUpIcon sx={{ mr: 0.5 }} />
+                    <Typography>{config.connection.upload}&nbsp;Mbps</Typography>
+                  </Stack>
+
+                  <Stack direction="row" alignItems="center" color="success.main">
+                    <ArrowDownIcon sx={{ mr: 0.5 }} />
+                    <Typography>{config.connection.download}&nbsp;Mbps</Typography>{' '}
+                  </Stack>
                 </Stack>
               </Stack>
 
