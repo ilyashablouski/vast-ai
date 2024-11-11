@@ -25,6 +25,10 @@ export const formFields: IFormFieldParams[] = [
   },
 ];
 
-const schemaFieldsValidation = {};
+const schemaFieldsValidation = {
+  email: yup.string().email('Incorrect email').required('Required field'),
+  password: yup.string().required('Required field'),
+  phone: yup.string(),
+};
 
 export const yupSchema = yup.object(schemaFieldsValidation);

@@ -1,11 +1,17 @@
 import { FC, ReactElement } from 'react';
 import { Box, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { Control, Controller, useForm } from 'react-hook-form';
+import axios from 'axios';
+import { Control, Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import TextFieldInput from '@components/fields';
-import { HookFormFieldType, HookFormType, IFormFieldParams } from '@components/SignForm/types.ts';
+import {
+  HookFormFieldType,
+  HookFormType,
+  IFormFieldParams,
+  ISignFormSubmit,
+} from '@components/SignForm/types.ts';
 import { getFormDefaultValuesFromConfig } from '@components/SignForm/helpers.ts';
 import { formFields, yupSchema } from '@components/SignForm/settings.ts';
 
@@ -23,22 +29,37 @@ const getFieldRender = (
 
 const renderFieldWithController = (
   formField: IFormFieldParams,
-  control: Control,
+  control: Control<ISignFormSubmit>,
   controllerRenderFn: ({ field }: { field: HookFormFieldType }) => ReactElement,
-) => <Controller key={formField.id} name={formField.name!} control={control} render={controllerRenderFn} />;
+) => <Controller key={formField.id} name={formField.name} control={control} render={controllerRenderFn} />;
 
 const SignForm: FC = () => {
   const defaultValues = getFormDefaultValuesFromConfig(formFields);
-
-  const hookForm = useForm({
+  const hookForm = useForm<ISignFormSubmit>({
     resolver: yupResolver(yupSchema),
     mode: 'all',
     defaultValues,
   });
   const { control, handleSubmit } = hookForm;
 
-  const onSubmit = (data: object) => {
-    console.log('Submitted data:', data);
+  const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
+    try {
+      // Send post request on server
+      const response = await axios.post('http://localhost:5180/api/save-user', data, {
+        responseType: 'blob',
+      });
+
+      // Create an object URL for downloading a file
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'users.csv'); // Указываем имя файла
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
   };
 
   return (
