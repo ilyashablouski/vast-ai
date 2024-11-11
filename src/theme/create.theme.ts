@@ -231,6 +231,15 @@ const baseOptions: ThemeOptions = {
         },
       },
     },
+    MuiBackdrop: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundColor:
+            theme.palette.mode === 'dark' ? 'rgba(21, 18, 24, 0.72)' : 'rgba(243,239,248,0.72)',
+          backdropFilter: 'blur(16px)',
+        }),
+      },
+    },
   },
   shadows: Array(25).fill('none') as Shadows,
   breakpoints: {

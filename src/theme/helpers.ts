@@ -20,4 +20,8 @@ export const addResponsiveThemeStyles = (theme: Theme) => {
       fontSize: '1.5rem',
     },
   };
+
+  theme.typography.body2 = {
+    color: theme.palette.text.primary,
+  };
 };
