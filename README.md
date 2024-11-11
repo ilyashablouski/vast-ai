@@ -1,3 +1,7 @@
+## vast-ai-front
+
+Front-end part of the Vast AI project.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
