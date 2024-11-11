@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box, IconButton, Modal } from '@mui/material';
+import { Box, IconButton, Modal, Theme } from '@mui/material';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 
@@ -20,8 +20,12 @@ const style = {
   width: '100%',
   maxWidth: '328px',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
+  border: (theme: Theme) => ({
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderRadius: '4px',
+    borderColor: theme.palette.mode === 'dark' ? '#251D2E' : '#EFE6F9',
+  }),
   p: 3,
 };
 
