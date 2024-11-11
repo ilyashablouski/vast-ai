@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Box, IconButton, Modal } from '@mui/material';
+import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 
 import { Cross as CrossIcon } from '@components/icons';
@@ -28,18 +29,28 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
   const handleClose = () => toggleModal(false);
 
   return (
-    <Modal open={isOpen} onClose={handleClose} aria-labelledby="modal-modal-title">
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          {title}
-        </Typography>
+    <Modal
+      open={isOpen}
+      onClose={handleClose}
+      closeAfterTransition
+      slotProps={{
+        backdrop: { timeout: 300 },
+      }}
+      aria-labelledby="modal-modal-title"
+    >
+      <Fade in={isOpen} timeout={300}>
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {title}
+          </Typography>
 
-        <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 20, right: 18 }}>
-          <CrossIcon />
-        </IconButton>
+          <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 20, right: 18 }}>
+            <CrossIcon />
+          </IconButton>
 
-        {children}
-      </Box>
+          {children}
+        </Box>
+      </Fade>
     </Modal>
   );
 };
