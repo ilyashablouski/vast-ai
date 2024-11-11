@@ -9,6 +9,7 @@ export const getMediaQueries = (theme: Theme) => ({
 
 export const addResponsiveThemeStyles = (theme: Theme) => {
   const { up } = getMediaQueries(theme);
+
   theme.typography.h1 = {
     [up(MEDIA.XS)]: {
       fontSize: '2rem',

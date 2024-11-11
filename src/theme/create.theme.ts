@@ -44,6 +44,7 @@ const baseOptions: ThemeOptions = {
           fontSize: '0.875rem',
           fontWeight: '900',
           height: '40px',
+          minWidth: '96px',
         },
         sizeLarge: {
           lineHeight: '16.41px',

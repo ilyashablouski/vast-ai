@@ -1,10 +1,11 @@
-import { CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import './App.css';
 import { THEMES } from '@/theme/types/enums.ts';
 import Layout from '@components/Layout';
 import { GlobalProvider } from '@/store';
 import { createTheme } from '@/theme';
+import useDarkMode from '@/hooks/useDarkMode.tsx';
 
 const createMuiTheme = (theme: THEMES) =>
   createTheme({
@@ -16,7 +17,7 @@ const createMuiTheme = (theme: THEMES) =>
   });
 
 function App() {
-  const isDarkMode = useMediaQuery(`(prefers-color-scheme: ${THEMES.DARK})`);
+  const { isDarkMode } = useDarkMode();
   const theme = createMuiTheme(isDarkMode ? THEMES.DARK : THEMES.LIGHT);
 
   return (
