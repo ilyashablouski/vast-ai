@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box, IconButton, Modal, Theme } from '@mui/material';
+import { Box, IconButton, Modal, Stack, Theme } from '@mui/material';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 
@@ -44,13 +44,15 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
     >
       <Fade in={isOpen} timeout={300}>
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {title}
-          </Typography>
+          <Stack direction="row" justifyContent="space-between" alignItems="center">
+            <Typography id="modal-modal-title" variant="h2" component="h2">
+              {title}
+            </Typography>
 
-          <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 20, right: 18 }}>
-            <CrossIcon />
-          </IconButton>
+            <IconButton onClick={handleClose} sx={{ position: 'relative', left: '8px' }}>
+              <CrossIcon />
+            </IconButton>
+          </Stack>
 
           {children}
         </Box>

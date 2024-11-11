@@ -203,7 +203,10 @@ const baseOptions: ThemeOptions = {
       styleOverrides: {
         root: ({ theme }) => ({
           '&:hover': {
-            backgroundColor: darken(theme.palette.primary.contrastText, 0.04),
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? darken(theme.palette.secondary.light, 0.04)
+                : darken(theme.palette.secondary.contrastText, 0.04),
           },
         }),
       },
