@@ -53,57 +53,6 @@ const baseOptions: ThemeOptions = {
           height: '56px',
         },
       },
-      variants: [
-        {
-          props: { variant: 'stroke', color: 'info' },
-          style: ({ theme }) => ({
-            backgroundColor: theme.palette.info.main,
-            color: theme.palette.secondary.contrastText,
-            '.MuiLoadingButton-loadingIndicatorStart': {
-              left: '14px',
-            },
-            borderColor: theme.palette.info.main,
-            '.MuiSvgIcon-root': {
-              color: theme.palette.primary.main,
-            },
-            '&:hover': {
-              backgroundColor: theme.palette.info.dark,
-              borderColor: theme.palette.primary.main,
-            },
-          }),
-        },
-        {
-          props: { variant: 'outlined' },
-          style: () => {
-            return {
-              '.MuiLoadingButton-loadingIndicatorStart': {
-                left: '14px',
-              },
-            };
-          },
-        },
-        {
-          props: { variant: 'contained', color: 'primary' },
-          style: ({ theme }) => {
-            return {
-              boxShadow: '0px 0px 4px rgba(92, 86, 218, 0.3)',
-              '.MuiLoadingButton-loadingIndicatorStart': {
-                left: '14px',
-              },
-              '&:hover': {
-                backgroundColor: theme.palette.primary.dark,
-                boxShadow: '0px 0px 4px rgba(63, 60, 147, 0.3)',
-              },
-              '&:disabled': {
-                backgroundColor: theme.palette.primary.light,
-                borderColor: theme.palette.primary.light,
-                color: theme.palette.primary.contrastText,
-                boxShadow: '0px 0px 4px rgba(214, 212, 246, 0.3)',
-              },
-            };
-          },
-        },
-      ],
     },
     MuiOutlinedInput: {
       styleOverrides: {
@@ -240,6 +189,18 @@ const baseOptions: ThemeOptions = {
           backgroundColor:
             theme.palette.mode === 'dark' ? 'rgba(21, 18, 24, 0.72)' : 'rgba(243,239,248,0.72)',
           backdropFilter: 'blur(16px)',
+        }),
+      },
+    },
+    MuiSnackbar: {
+      styleOverrides: {
+        root: () => ({
+          '& .MuiSnackbarContent-root': {
+            padding: '0px',
+            display: 'flex',
+            minWidth: '100%',
+            boxShadow: 'none',
+          },
         }),
       },
     },
