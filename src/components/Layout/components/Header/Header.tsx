@@ -6,10 +6,12 @@ import Button from '@mui/material/Button';
 import { Logo as LogoIcon } from '@components/icons';
 import useGlobalContext from '@/store/context.tsx';
 import useDarkMode from '@/hooks/useDarkMode.ts';
+import useMediaQueries from '@/hooks/useMediaQueries.ts';
 
 const Header = () => {
   const { toggleModal } = useGlobalContext();
   const { isDarkMode } = useDarkMode();
+  const { isMobile } = useMediaQueries();
 
   return (
     <AppBar position="sticky">
@@ -17,15 +19,17 @@ const Header = () => {
         <Stack direction="row" justifyContent="space-between" alignItems="center" height="64px">
           <Stack direction="row" alignItems="center" color={isDarkMode ? '#E0D0FA' : '#C8B3E9'}>
             <LogoIcon />
-            <Typography
-              ml={1}
-              component="span"
-              fontFamily='"Source Code Pro", monospace;'
-              fontWeight="600"
-              fontSize="16px"
-            >
-              Dataxide AI
-            </Typography>
+            {!isMobile && (
+              <Typography
+                ml={1}
+                component="span"
+                fontFamily='"Source Code Pro", monospace;'
+                fontWeight="600"
+                fontSize="16px"
+              >
+                Dataxide AI
+              </Typography>
+            )}
           </Stack>
 
           <Stack direction="row" alignItems="center">
