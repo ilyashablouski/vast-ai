@@ -1,9 +1,9 @@
-import { FC, ReactElement } from 'react';
-import { Box, Stack } from '@mui/material';
+import { FC, ReactElement, useState } from 'react';
+import { Alert, Box, Portal, Snackbar, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import axios from 'axios';
 import { Control, Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios, { AxiosError } from 'axios';
 
 import TextFieldInput from '@components/fields';
 import {
@@ -14,17 +14,27 @@ import {
 } from '@components/SignForm/types.ts';
 import { getFormDefaultValuesFromConfig } from '@components/SignForm/helpers.ts';
 import { formFields, yupSchema } from '@components/SignForm/settings.ts';
+import { Error as ErrorIcon } from '@components/icons';
+import useGlobalContext from '@/store/context.tsx';
 
 const getFieldRender = (
   hookForm: HookFormType,
   hookFormField: HookFormFieldType,
   formField: IFormFieldParams,
+  isLoading: boolean,
 ): ReactElement => {
   const {
     formState: { errors },
   } = hookForm;
 
-  return <TextFieldInput hookFormField={hookFormField} formField={formField} errors={errors} />;
+  return (
+    <TextFieldInput
+      hookFormField={hookFormField}
+      formField={formField}
+      errors={errors}
+      disabled={isLoading}
+    />
+  );
 };
 
 const renderFieldWithController = (
@@ -34,6 +44,13 @@ const renderFieldWithController = (
 ) => <Controller key={formField.id} name={formField.name} control={control} render={controllerRenderFn} />;
 
 const SignForm: FC = () => {
+  const { toggleModal } = useGlobalContext();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [, setIsSuccess] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const defaultValues = getFormDefaultValuesFromConfig(formFields);
   const hookForm = useForm<ISignFormSubmit>({
     resolver: yupResolver(yupSchema),
@@ -43,48 +60,89 @@ const SignForm: FC = () => {
   const { control, handleSubmit } = hookForm;
 
   const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
-    try {
-      // Send post request on server
-      const response = await axios.post('http://localhost:5180/api/save-user', data, {
-        responseType: 'blob',
-      });
+    setIsLoading(true);
+    setIsSuccess(false);
+    setIsError(false);
+    setErrorMessage(null);
 
-      // Create an object URL for downloading a file
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'users.csv'); // Указываем имя файла
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      console.error('Error sending data:', error);
+    try {
+      const response = await axios.post('http://localhost:5180/api/save-user', data);
+
+      if (response.status === 200) {
+        setIsSuccess(true);
+        toggleModal(false);
+      }
+    } catch (error: unknown) {
+      setIsError(true);
+
+      if (error instanceof AxiosError) {
+        console.log('error.response:', error.response);
+        if (error.response) {
+          setErrorMessage(`Error: ${error.response.status} - ${error.response.data.message}`);
+        } else {
+          setErrorMessage(`An error has occurred: ${error.message}`);
+        }
+      } else {
+        setErrorMessage('An unknown error has occurred');
+      }
+
+      setOpenSnackbar(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-      <Stack direction="column" spacing={3} mt={4}>
-        {formFields.map((formField) => {
-          return renderFieldWithController(formField, control, ({ field }) =>
-            getFieldRender(hookForm, field, formField),
-          );
-        })}
-      </Stack>
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
 
-      <LoadingButton
-        id="signFormSubmitBtn"
-        type="submit"
-        variant="contained"
-        color="primary"
-        size="large"
-        // loading={mutation.isLoading}
-        fullWidth
-        sx={{ mt: 4 }}
-      >
-        SIGN UP
-      </LoadingButton>
-    </Box>
+  return (
+    <>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+        <Stack direction="column" spacing={3} mt={4}>
+          {formFields.map((formField) => {
+            return renderFieldWithController(formField, control, ({ field }) =>
+              getFieldRender(hookForm, field, formField, isLoading),
+            );
+          })}
+        </Stack>
+
+        <LoadingButton
+          id="signFormSubmitBtn"
+          type="submit"
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+          sx={{ mt: 4 }}
+          loading={isLoading}
+        >
+          SIGN UP
+        </LoadingButton>
+      </Box>
+
+      {isError ? (
+        <Portal>
+          <Snackbar
+            open={openSnackbar}
+            onClose={handleCloseSnackbar}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+          >
+            <Alert
+              icon={<ErrorIcon fontSize="inherit" />}
+              onClose={handleCloseSnackbar}
+              severity="error"
+              variant="filled"
+            >
+              {errorMessage || 'An error occurred while sending data'}
+            </Alert>
+          </Snackbar>
+        </Portal>
+      ) : null}
+    </>
   );
 };
 
