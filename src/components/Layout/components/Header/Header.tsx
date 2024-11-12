@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 
 import { Logo as LogoIcon } from '@components/icons';
 import useGlobalContext from '@/store/context.tsx';
-import useDarkMode from '@/hooks/useDarkMode.tsx';
+import useDarkMode from '@/hooks/useDarkMode.ts';
 
 const Header = () => {
   const { toggleModal } = useGlobalContext();
@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <AppBar position="sticky">
-      <Container maxWidth="lg" sx={{ boxSizing: 'content-box' }}>
+      <Container maxWidth="lg">
         <Stack direction="row" justifyContent="space-between" alignItems="center" height="64px">
           <Stack direction="row" alignItems="center" color={isDarkMode ? '#E0D0FA' : '#C8B3E9'}>
             <LogoIcon />
