@@ -5,7 +5,7 @@ import { THEMES } from '@/theme/types/enums.ts';
 import Layout from '@components/Layout';
 import { GlobalProvider } from '@/store';
 import { createTheme } from '@/theme';
-import useDarkMode from '@/hooks/useDarkMode.tsx';
+import useDarkMode from '@/hooks/useDarkMode.ts';
 
 const createMuiTheme = (theme: THEMES) =>
   createTheme({

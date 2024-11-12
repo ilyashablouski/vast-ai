@@ -29,27 +29,21 @@ const baseOptions: ThemeOptions = {
     MuiButton: {
       styleOverrides: {
         root: {
+          fontSize: '0.875rem',
+          fontWeight: '900',
+          lineHeight: '16.41px',
           textTransform: 'none',
           fontStyle: 'normal',
           boxSizing: 'border-box',
         },
         sizeSmall: {
-          lineHeight: '16.41px',
-          fontSize: '0.875rem',
-          fontWeight: '900',
           height: '32px',
         },
         sizeMedium: {
-          lineHeight: '16.41px',
-          fontSize: '0.875rem',
-          fontWeight: '900',
           height: '40px',
           minWidth: '96px',
         },
         sizeLarge: {
-          lineHeight: '16.41px',
-          fontSize: '0.875rem',
-          fontWeight: '900',
           height: '56px',
         },
       },
@@ -204,6 +198,18 @@ const baseOptions: ThemeOptions = {
         }),
       },
     },
+    MuiContainer: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          [theme.breakpoints.up('xs')]: {
+            padding: theme.spacing(0, 2),
+          },
+          [theme.breakpoints.up('md')]: {
+            padding: theme.spacing(0, 3),
+          },
+        }),
+      },
+    },
   },
   shadows: Array(25).fill('none') as Shadows,
   breakpoints: {
@@ -211,7 +217,7 @@ const baseOptions: ThemeOptions = {
       xs: 0,
       sm: 425,
       md: 768,
-      lg: 1032,
+      lg: 1080,
       xl: 1440,
     },
   },
