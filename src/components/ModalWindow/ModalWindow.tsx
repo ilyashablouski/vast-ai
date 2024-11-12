@@ -8,7 +8,7 @@ import { Cross as CrossIcon } from '@components/icons';
 interface IModalWindowProps {
   isOpen: boolean;
   toggleModal: (payload: boolean) => void;
-  title: string;
+  title?: string;
   children: React.ReactNode;
 }
 
@@ -45,9 +45,11 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
       <Fade in={isOpen} timeout={300}>
         <Box sx={style}>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <Typography id="modal-modal-title" variant="h2" component="h2">
-              {title}
-            </Typography>
+            {!!title && (
+              <Typography id="modal-modal-title" variant="h2" component="h2">
+                {title}
+              </Typography>
+            )}
 
             <IconButton onClick={handleClose} sx={{ position: 'relative', left: '8px' }}>
               <CrossIcon />
