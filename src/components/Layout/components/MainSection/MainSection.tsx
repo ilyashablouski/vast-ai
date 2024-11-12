@@ -12,12 +12,13 @@ const MainSection = () => {
   const { toggleModal } = useGlobalContext();
 
   return (
-    <Container sx={{ mt: 6, pb: 6 }} maxWidth="lg">
+    <Container sx={{ mt: 6 }} maxWidth="lg">
       <Typography variant="h1" mb={4}>
         Available Configurations
       </Typography>
 
       <Stack
+        pb={6}
         spacing={3}
         sx={{
           overflowX: 'auto',
