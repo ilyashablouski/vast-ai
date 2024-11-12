@@ -1,1 +1,2 @@
-export * from './useDarkMode';
+export * from './useDarkMode.ts';
+export * from './useMediaQueries.ts';
