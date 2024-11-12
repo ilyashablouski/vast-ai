@@ -20,7 +20,7 @@ const MainSection = () => {
       <Stack
         spacing={3}
         sx={{
-          overflowX: 'scroll',
+          overflowX: 'auto',
           maxWidth: '100%',
         }}
       >
