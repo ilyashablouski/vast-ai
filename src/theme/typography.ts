@@ -23,6 +23,11 @@ const typography: TypographyOptions = {
     fontWeight: 700,
     lineHeight: 1.17,
   },
+  h4: {
+    fontSize: '1.5rem',
+    fontWeight: 500,
+    lineHeight: 1.17,
+  },
   body1: {
     fontSize: '0.875rem',
     fontWeight: 400,

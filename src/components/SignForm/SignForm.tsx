@@ -17,6 +17,10 @@ import { formFields, yupSchema } from '@components/SignForm/settings.ts';
 import { Error as ErrorIcon } from '@components/icons';
 import useGlobalContext from '@/store/context.tsx';
 
+interface ISignFormProps {
+  toggleSuccessModal: (payload: boolean) => void;
+}
+
 const getFieldRender = (
   hookForm: HookFormType,
   hookFormField: HookFormFieldType,
@@ -43,10 +47,9 @@ const renderFieldWithController = (
   controllerRenderFn: ({ field }: { field: HookFormFieldType }) => ReactElement,
 ) => <Controller key={formField.id} name={formField.name} control={control} render={controllerRenderFn} />;
 
-const SignForm: FC = () => {
+const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
   const { toggleModal } = useGlobalContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -61,7 +64,7 @@ const SignForm: FC = () => {
 
   const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
     setIsLoading(true);
-    setIsSuccess(false);
+    // setIsSuccess(false);
     setIsError(false);
     setErrorMessage(null);
 
@@ -69,14 +72,13 @@ const SignForm: FC = () => {
       const response = await axios.post('http://localhost:5180/api/save-user', data);
 
       if (response.status === 200) {
-        setIsSuccess(true);
         toggleModal(false);
+        toggleSuccessModal(true);
       }
     } catch (error: unknown) {
       setIsError(true);
 
       if (error instanceof AxiosError) {
-        console.log('error.response:', error.response);
         if (error.response) {
           setErrorMessage(`Error: ${error.response.status} - ${error.response.data.message}`);
         } else {
@@ -121,11 +123,12 @@ const SignForm: FC = () => {
         </LoadingButton>
       </Box>
 
-      {isError ? (
+      {isError && (
         <Portal>
           <Snackbar
             open={openSnackbar}
             onClose={handleCloseSnackbar}
+            autoHideDuration={5000}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
@@ -141,7 +144,7 @@ const SignForm: FC = () => {
             </Alert>
           </Snackbar>
         </Portal>
-      ) : null}
+      )}
     </>
   );
 };

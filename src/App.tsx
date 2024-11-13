@@ -10,7 +10,6 @@ import useDarkMode from '@/hooks/useDarkMode.ts';
 const createMuiTheme = (theme: THEMES) =>
   createTheme({
     direction: 'ltr',
-    responsiveFontSizes: true,
     roundedCorners: true,
     theme,
     locale: 'en',

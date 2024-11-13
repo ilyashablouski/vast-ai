@@ -13,12 +13,16 @@ interface IModalWindowProps {
 }
 
 const style = {
+  p: 3,
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '100%',
-  maxWidth: '328px',
+  maxWidth: {
+    xs: '377px',
+    sm: '330px',
+  },
   bgcolor: 'background.paper',
   border: (theme: Theme) => ({
     borderWidth: '1px',
@@ -26,7 +30,6 @@ const style = {
     borderRadius: '4px',
     borderColor: theme.palette.mode === 'dark' ? '#251D2E' : '#EFE6F9',
   }),
-  p: 3,
 };
 
 const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, children }) => {
@@ -46,7 +49,7 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
         <Box sx={style}>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
             {!!title && (
-              <Typography id="modal-modal-title" variant="h2" component="h2">
+              <Typography id="modal-modal-title" variant="h1" component="span" fontSize={{ md: '1.5rem' }}>
                 {title}
               </Typography>
             )}

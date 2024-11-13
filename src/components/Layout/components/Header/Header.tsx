@@ -1,5 +1,5 @@
 import AppBar from '@mui/material/AppBar';
-import { Container, Stack } from '@mui/material';
+import { Container, Stack, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
@@ -11,6 +11,7 @@ import useMediaQueries from '@/hooks/useMediaQueries.ts';
 const Header = () => {
   const { toggleModal } = useGlobalContext();
   const { isDarkMode } = useDarkMode();
+  const theme = useTheme();
   const { isMobile } = useMediaQueries();
 
   return (
@@ -34,7 +35,9 @@ const Header = () => {
 
           <Stack direction="row" alignItems="center">
             <Stack mr={3}>
-              <Typography variant="body2">Credits:</Typography>
+              <Typography variant="body2" color={theme.palette.text.primary}>
+                Credits:
+              </Typography>
               <Typography variant="h3" textAlign="right">
                 $ 0
               </Typography>
