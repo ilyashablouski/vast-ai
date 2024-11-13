@@ -33,6 +33,7 @@ export const lightPalette: PaletteOptions = {
     primary: '#000000',
     secondary: 'rgba(0,0,0,0.5)',
   },
+  border: '#EFE6F9',
   ...commonPalette,
 };
 
@@ -52,5 +53,6 @@ export const darkPalette: PaletteOptions = {
     primary: '#ffffff',
     secondary: 'rgba(255,255,255,0.5)',
   },
+  border: '#32273E',
   ...commonPalette,
 };

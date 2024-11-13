@@ -8,6 +8,13 @@ declare module '@mui/material/styles' {
   interface TypographyVariantsOptions {
     fontWeightExtraBold?: number;
   }
+
+  interface Palette {
+    border?: PaletteColorOptions;
+  }
+  interface PaletteOptions {
+    border?: PaletteColorOptions;
+  }
 }
 
 declare module '@mui/material/Typography' {

@@ -56,7 +56,7 @@ const baseOptions: ThemeOptions = {
           },
           padding: '16px 12px',
         }),
-        notchedOutline: {
+        notchedOutline: {        
           legend: {
             fontSize: '0.85em',
           },
@@ -91,6 +91,10 @@ const baseOptions: ThemeOptions = {
           },
           fontWeight: 400,
           lineHeight: 1.17,
+          backgroundColor: theme.palette.secondary.light,
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: `1px solid ${theme.palette.border}`,
+          }
         }),
       },
     },
