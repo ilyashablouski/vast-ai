@@ -97,6 +97,7 @@ const baseOptions: ThemeOptions = {
     MuiFormHelperText: {
       styleOverrides: {
         root: {
+          fontWeight: 400,
           textAlign: 'right',
           marginRight: 0,
           marginTop: '4px',

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { TextField, useTheme } from '@mui/material';
 
 import { HookFormErrorType, HookFormFieldType, IFormFieldParams } from '@components/SignForm/types.ts';
@@ -14,6 +14,14 @@ const TextFieldInput: FC<TextInputProps> = ({ hookFormField, formField, errors, 
   const theme = useTheme();
   const errorMessage = errors[formField.name!]?.message;
   const isError = !!errors[formField.name!];
+  const isPhoneField = formField.type === 'tel';
+
+  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^(\+)?\d*$/.test(value)) {
+      hookFormField.onChange(e);
+    }
+  };
 
   return (
     <TextField
@@ -30,7 +38,7 @@ const TextFieldInput: FC<TextInputProps> = ({ hookFormField, formField, errors, 
       variant="outlined"
       fullWidth
       disabled={disabled}
-      onChange={(e) => hookFormField.onChange(e)}
+      onChange={isPhoneField ? handlePhoneNumberChange : (e) => hookFormField.onChange(e)}
       value={hookFormField.value}
       error={isError}
       helperText={<>{isError ? errorMessage : ' '}</>}
