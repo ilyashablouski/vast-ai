@@ -21,6 +21,10 @@ interface ISignFormProps {
   toggleSuccessModal: (payload: boolean) => void;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+console.log(API_BASE_URL);
+
 const getFieldRender = (
   hookForm: HookFormType,
   hookFormField: HookFormFieldType,
@@ -68,7 +72,7 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
     setErrorMessage(null);
 
     try {
-      const response = await axios.post('http://localhost:5180/api/save-user', data);
+      const response = await axios.post(`${API_BASE_URL}/api/save-user`, data);
 
       if (response.status === 200) {
         toggleModal(false);
