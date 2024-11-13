@@ -102,7 +102,7 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
   return (
     <>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-        <Stack direction="column" spacing={2} mt={4}>
+        <Stack direction="column" spacing={{ xs: 5, sm: 3.75 }} mt={{ xs: 7.5, sm: 7 }}>
           {formFields.map((formField) => {
             return renderFieldWithController(formField, control, ({ field }) =>
               getFieldRender(hookForm, field, formField, isLoading),
@@ -117,7 +117,7 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
           color="primary"
           size="large"
           fullWidth
-          sx={{ mt: 4 }}
+          sx={{ mt: 1.75 }}
           loading={isLoading}
         >
           SIGN UP

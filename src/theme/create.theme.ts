@@ -49,16 +49,13 @@ const baseOptions: ThemeOptions = {
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        input: {
-          height: '1.4375rem',
-          paddingTop: '13.5px',
-          paddingBottom: '13.5px',
-        },
-        inputSizeSmall: {
-          height: '1.4375rem',
-          paddingTop: '8.5px',
-          paddingBottom: '8.5px',
-        },
+        input: ({ theme }) => ({
+          height: '1.187rem',
+          [theme.breakpoints.up('sm')]: {
+            height: '1rem',
+          },
+          padding: '16px 12px',
+        }),
         notchedOutline: {
           legend: {
             fontSize: '0.85em',
@@ -72,7 +69,7 @@ const baseOptions: ThemeOptions = {
           color: theme.palette.text.secondary,
           fontWeight: 400,
           fontSize: '0.875rem',
-          lineHeight: '19px',
+          lineHeight: '1.17',
         }),
         outlined: {
           transform: 'translate(14px, 15px) scale(1)',
@@ -87,11 +84,14 @@ const baseOptions: ThemeOptions = {
     },
     MuiInputBase: {
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
+          fontSize: '1rem',
+          [theme.breakpoints.up('sm')]: {
+            fontSize: '0.875rem',
+          },
           fontWeight: 400,
-          fontSize: '0.875rem',
-          lineHeight: '19px',
-        },
+          lineHeight: 1.17,
+        }),
       },
     },
     MuiFormHelperText: {

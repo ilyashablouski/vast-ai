@@ -49,7 +49,7 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
         <Box sx={style}>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
             {!!title && (
-              <Typography id="modal-modal-title" variant="h1" component="span" fontSize={{ md: '1.5rem' }}>
+              <Typography id="modal-modal-title" variant="h1" component="span" fontSize={{ sm: '1.5rem' }}>
                 {title}
               </Typography>
             )}

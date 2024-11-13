@@ -38,6 +38,11 @@ const typography: TypographyOptions = {
     fontWeight: 500,
     lineHeight: 1.17,
   },
+  caption: {
+    fontSize: '0.75rem',
+    fontWeight: 400,
+    lineHeight: 1.17,
+  },
 };
 
 export default typography;
