@@ -18,7 +18,8 @@ const TextFieldInput: FC<TextInputProps> = ({ hookFormField, formField, errors, 
 
   const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (/^(\+)?\d*$/.test(value)) {
+
+    if (/^(\+)?\d{0,15}$/.test(value)) {
       hookFormField.onChange(e);
     }
   };

@@ -28,7 +28,7 @@ export const formFields: IFormFieldParams[] = [
   },
 ];
 
-export const phoneRegExp = /^\+?[1-9]\d{7,14}$/;
+export const phoneRegExp = /^(|(\+?[1-9]\d{7,14}))$/;
 
 const schemaFieldsValidation = {
   email: yup.string().email('Incorrect email').required('Required field'),
