@@ -15,6 +15,7 @@ export interface IFormFieldParams {
   name: keyof ISignFormSubmit;
   id: string;
   label: string;
+  placeholder?: string;
   defaultValue: string;
 }
 

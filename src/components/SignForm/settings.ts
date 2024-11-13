@@ -7,6 +7,7 @@ export const formFields: IFormFieldParams[] = [
     name: 'email',
     id: 'emailInput',
     label: 'Email',
+    placeholder: 'Your personal email',
     defaultValue: '',
   },
   {
@@ -14,6 +15,7 @@ export const formFields: IFormFieldParams[] = [
     name: 'password',
     id: 'passwordInput',
     label: 'Password',
+    placeholder: 'Create secure password',
     defaultValue: '',
   },
   {
@@ -21,6 +23,7 @@ export const formFields: IFormFieldParams[] = [
     name: 'phone',
     id: 'phoneInput',
     label: 'Phone number',
+    placeholder: 'Your personal phone number',
     defaultValue: '',
   },
 ];

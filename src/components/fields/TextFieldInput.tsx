@@ -12,7 +12,8 @@ interface TextInputProps {
 
 const TextFieldInput: FC<TextInputProps> = ({ hookFormField, formField, errors, disabled }) => {
   const theme = useTheme();
-  const isError = !!errors[formField.name!]?.message;
+  const errorMessage = errors[formField.name!]?.message;
+  const isError = !!errors[formField.name!];
 
   return (
     <TextField
@@ -24,6 +25,7 @@ const TextFieldInput: FC<TextInputProps> = ({ hookFormField, formField, errors, 
       type={formField.type}
       id={formField.id}
       label={formField.label}
+      placeholder={formField.placeholder}
       margin="none"
       variant="outlined"
       fullWidth
@@ -31,7 +33,12 @@ const TextFieldInput: FC<TextInputProps> = ({ hookFormField, formField, errors, 
       onChange={(e) => hookFormField.onChange(e)}
       value={hookFormField.value}
       error={isError}
-      helperText={<>{errors[formField.name!]?.message}</>}
+      helperText={<>{isError ? errorMessage : ' '}</>}
+      slotProps={{
+        formHelperText: {
+          sx: { minHeight: '20px', visibility: isError ? 'visible' : 'hidden' },
+        },
+      }}
     />
   );
 };

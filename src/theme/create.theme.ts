@@ -69,7 +69,7 @@ const baseOptions: ThemeOptions = {
     MuiInputLabel: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: theme.palette.secondary.main,
+          color: theme.palette.text.secondary,
           fontWeight: 400,
           fontSize: '0.875rem',
           lineHeight: '19px',
@@ -91,6 +91,15 @@ const baseOptions: ThemeOptions = {
           fontWeight: 400,
           fontSize: '0.875rem',
           lineHeight: '19px',
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          textAlign: 'right',
+          marginRight: 0,
+          marginTop: '4px',
         },
       },
     },

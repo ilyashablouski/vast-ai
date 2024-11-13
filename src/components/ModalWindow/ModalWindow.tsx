@@ -54,7 +54,7 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
               </Typography>
             )}
 
-            <IconButton onClick={handleClose} sx={{ position: 'relative', left: '8px' }}>
+            <IconButton onClick={handleClose} sx={{ position: 'relative', left: '8px', ml: 'auto' }}>
               <CrossIcon />
             </IconButton>
           </Stack>

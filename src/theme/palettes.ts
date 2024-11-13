@@ -50,7 +50,7 @@ export const darkPalette: PaletteOptions = {
   },
   text: {
     primary: '#ffffff',
-    secondary: 'rgba(0,0,0,0.5)',
+    secondary: 'rgba(255,255,255,0.5)',
   },
   ...commonPalette,
 };
