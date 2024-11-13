@@ -64,7 +64,6 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
 
   const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
     setIsLoading(true);
-    // setIsSuccess(false);
     setIsError(false);
     setErrorMessage(null);
 
