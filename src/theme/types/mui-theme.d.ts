@@ -10,10 +10,15 @@ declare module '@mui/material/styles' {
   }
 
   interface Palette {
+    header?: PaletteColorOptions;
     border?: PaletteColorOptions;
+    cardBorder?: PaletteColorOptions;
   }
+
   interface PaletteOptions {
+    header?: PaletteColorOptions;
     border?: PaletteColorOptions;
+    cardBorder?: PaletteColorOptions;
   }
 }
 

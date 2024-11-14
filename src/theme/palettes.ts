@@ -34,6 +34,8 @@ export const lightPalette: PaletteOptions = {
     secondary: 'rgba(0,0,0,0.5)',
   },
   border: '#EFE6F9',
+  cardBorder: '#EFE6F9',
+  header: '#FFFFFF',
   ...commonPalette,
 };
 
@@ -54,5 +56,7 @@ export const darkPalette: PaletteOptions = {
     secondary: 'rgba(255,255,255,0.5)',
   },
   border: '#32273E',
+  cardBorder: '#251D2E',
+  header: '#1E1923',
   ...commonPalette,
 };

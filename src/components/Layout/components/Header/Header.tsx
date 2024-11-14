@@ -15,7 +15,7 @@ const Header = () => {
   const { isMobile } = useMediaQueries();
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ backgroundColor: theme.palette.header }}>
       <Container maxWidth="lg">
         <Stack direction="row" justifyContent="space-between" alignItems="center" height="64px">
           <Stack direction="row" alignItems="center" color={isDarkMode ? '#E0D0FA' : '#C8B3E9'}>

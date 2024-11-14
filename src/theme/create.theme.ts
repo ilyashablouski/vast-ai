@@ -56,7 +56,7 @@ const baseOptions: ThemeOptions = {
           },
           padding: '16px 12px',
         }),
-        notchedOutline: {        
+        notchedOutline: {
           legend: {
             fontSize: '0.85em',
           },
@@ -94,7 +94,7 @@ const baseOptions: ThemeOptions = {
           backgroundColor: theme.palette.secondary.light,
           '& .MuiOutlinedInput-notchedOutline': {
             border: `1px solid ${theme.palette.border}`,
-          }
+          },
         }),
       },
     },
@@ -221,6 +221,22 @@ const baseOptions: ThemeOptions = {
             padding: theme.spacing(0, 3),
           },
         }),
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundImage: 'none',
+          border: `1px solid ${theme.palette.cardBorder}`,
+          borderRadius: '4px',
+        }),
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
       },
     },
   },
