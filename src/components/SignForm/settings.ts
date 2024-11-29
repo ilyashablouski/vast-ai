@@ -30,8 +30,18 @@ export const formFields: IFormFieldParams[] = [
 
 export const phoneRegExp = /^(|(\+?[1-9]\d{7,14}))$/;
 
+const forbiddenDomains = ['gmail.com', 'yahoo.com', 'hotmail.com'];
+const emailValidation = yup
+  .string()
+  .email('Incorrect email')
+  .test('forbidden-domains', 'Personal email are not allowed', (value) => {
+    if (!value) return true;
+    const domain = value.split('@')[1];
+    return !forbiddenDomains.includes(domain);
+  });
+
 const schemaFieldsValidation = {
-  email: yup.string().email('Incorrect email').required('Required field'),
+  email: emailValidation.required('Required field'),
   password: yup.string().required('Required field'),
   phone: yup.string().matches(phoneRegExp, 'Invalid phone number'),
 };
