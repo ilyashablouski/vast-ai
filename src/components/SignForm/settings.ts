@@ -11,7 +11,7 @@ export const formFields: IFormFieldParams[] = [
     defaultValue: '',
   },
   {
-    type: 'text',
+    type: 'password',
     name: 'password',
     id: 'passwordInput',
     label: 'Password',
