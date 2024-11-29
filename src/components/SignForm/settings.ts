@@ -7,7 +7,7 @@ export const formFields: IFormFieldParams[] = [
     name: 'email',
     id: 'emailInput',
     label: 'Email',
-    placeholder: 'Your personal email',
+    placeholder: 'Your company email',
     defaultValue: '',
   },
   {
@@ -23,7 +23,7 @@ export const formFields: IFormFieldParams[] = [
     name: 'phone',
     id: 'phoneInput',
     label: 'Phone number',
-    placeholder: 'Your personal phone number',
+    placeholder: 'Your company phone number',
     defaultValue: '',
   },
 ];
