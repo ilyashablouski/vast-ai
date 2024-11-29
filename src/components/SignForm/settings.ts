@@ -31,6 +31,7 @@ export const formFields: IFormFieldParams[] = [
 export const phoneRegExp = /^(|(\+?[1-9]\d{7,14}))$/;
 
 const forbiddenDomains = ['gmail.com', 'yahoo.com', 'hotmail.com'];
+
 const emailValidation = yup
   .string()
   .email('Incorrect email')
@@ -38,6 +39,11 @@ const emailValidation = yup
     if (!value) return true;
     const domain = value.split('@')[1];
     return !forbiddenDomains.includes(domain);
+  })
+  .test('valid-domain-format', "Email must have '.' (e.g., user@domain.com)", (value) => {
+    if (!value) return true;
+    const domain = value.split('@')[1];
+    return !!domain && domain.includes('.');
   });
 
 const schemaFieldsValidation = {
