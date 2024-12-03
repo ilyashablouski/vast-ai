@@ -7,12 +7,18 @@ import { Logo as LogoIcon } from '@components/icons';
 import useGlobalContext from '@/store/context.tsx';
 import useDarkMode from '@/hooks/useDarkMode.ts';
 import useMediaQueries from '@/hooks/useMediaQueries.ts';
+import { logEvent } from '@/utils/analytics.ts';
 
 const Header = () => {
   const { toggleModal } = useGlobalContext();
   const { isDarkMode } = useDarkMode();
   const theme = useTheme();
   const { isMobile } = useMediaQueries();
+
+  const handleClick = () => {
+    toggleModal(true);
+    logEvent('User Interaction', 'Button Click', 'Login button');
+  };
 
   return (
     <AppBar position="sticky" sx={{ backgroundColor: theme.palette.header }}>
@@ -43,7 +49,7 @@ const Header = () => {
               </Typography>
             </Stack>
 
-            <Button variant="contained" color="secondary" onClick={() => toggleModal(true)}>
+            <Button variant="contained" color="secondary" onClick={handleClick}>
               LOGIN
             </Button>
           </Stack>
