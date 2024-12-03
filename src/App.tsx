@@ -1,3 +1,4 @@
+import { FC, useEffect } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import './App.css';
@@ -6,6 +7,7 @@ import Layout from '@components/Layout';
 import { GlobalProvider } from '@/store';
 import { createTheme } from '@/theme';
 import useDarkMode from '@/hooks/useDarkMode.ts';
+import { initGoogleAnalytics, logPageView } from '@/utils/analytics.ts';
 
 const createMuiTheme = (theme: THEMES) =>
   createTheme({
@@ -15,9 +17,19 @@ const createMuiTheme = (theme: THEMES) =>
     locale: 'en',
   });
 
-function App() {
+const App: FC = () => {
   const { isDarkMode } = useDarkMode();
   const theme = createMuiTheme(isDarkMode ? THEMES.DARK : THEMES.LIGHT);
+
+  useEffect(() => {
+    const isLocalhost = window.location.hostname === 'localhost';
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    if (isProduction && !isLocalhost) {
+      initGoogleAnalytics();
+      logPageView();
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -28,6 +40,6 @@ function App() {
       </GlobalProvider>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
