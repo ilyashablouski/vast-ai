@@ -18,7 +18,7 @@ const MainSection = () => {
 
     logEventGA('ButtonClick', {
       category: 'User Interaction',
-      buttonName: 'Rent',
+      button_name: 'Rent',
     });
     trackEventFAB('ButtonClick', { buttonName: 'Rent' });
   };
