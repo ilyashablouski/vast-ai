@@ -16,7 +16,7 @@ const MainSection = () => {
   const handleClick = () => {
     toggleModal(true);
 
-    logEventGA('Button Click', {
+    logEventGA('ButtonClick', {
       category: 'User Interaction',
       buttonName: 'Rent',
     });

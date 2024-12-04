@@ -18,7 +18,7 @@ const Header = () => {
 
   const handleClick = () => {
     toggleModal(true);
-    logEventGA('Button Click', {
+    logEventGA('ButtonClick', {
       category: 'User Interaction',
       buttonName: 'Login',
     });
