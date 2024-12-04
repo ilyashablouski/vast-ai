@@ -68,8 +68,6 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
   const { control, handleSubmit } = hookForm;
 
   const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
-    console.log(getFormattedDateWithTimezone());
-
     logEventGA('FormSubmission', {
       category: 'Form Interaction',
       form_name: 'Sign up',
