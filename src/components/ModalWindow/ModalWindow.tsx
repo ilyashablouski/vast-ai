@@ -7,8 +7,9 @@ import { Cross as CrossIcon } from '@components/icons';
 
 interface IModalWindowProps {
   isOpen: boolean;
-  toggleModal: (payload: boolean) => void;
+  toggleModal?: (payload: boolean) => void;
   title?: string;
+  withCloseButton?: boolean;
   children: React.ReactNode;
 }
 
@@ -32,8 +33,14 @@ const style = {
   }),
 };
 
-const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, children }) => {
-  const handleClose = () => toggleModal(false);
+const ModalWindow: FC<IModalWindowProps> = ({
+  isOpen,
+  toggleModal,
+  title,
+  withCloseButton = true,
+  children,
+}) => {
+  const handleClose = () => !!toggleModal && toggleModal(false);
 
   return (
     <Modal
@@ -54,9 +61,11 @@ const ModalWindow: FC<IModalWindowProps> = ({ isOpen, toggleModal, title, childr
               </Typography>
             )}
 
-            <IconButton onClick={handleClose} sx={{ position: 'relative', left: '8px', ml: 'auto' }}>
-              <CrossIcon />
-            </IconButton>
+            {withCloseButton && (
+              <IconButton onClick={handleClose} sx={{ position: 'relative', left: '8px', ml: 'auto' }}>
+                <CrossIcon />
+              </IconButton>
+            )}
           </Stack>
 
           {children}

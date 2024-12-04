@@ -27,7 +27,7 @@ const Layout = () => {
         <SignForm toggleSuccessModal={toggleSuccessModal} />
       </ModalWindow>
 
-      <ModalWindow isOpen={isSuccessModalOpen} toggleModal={toggleSuccessModal}>
+      <ModalWindow isOpen={isSuccessModalOpen} withCloseButton={false}>
         <Stack alignItems="center">
           <img src={HandsImage} alt="hands" style={{ maxWidth: '180px' }} />
           <Typography variant="h1" component="span" fontSize={{ sm: '1.5rem' }} textAlign="center" mt={6}>
