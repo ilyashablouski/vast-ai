@@ -18,7 +18,7 @@ import { Error as ErrorIcon } from '@components/icons';
 import useGlobalContext from '@/store/context.tsx';
 import { logEventGA } from '@/utils/google.analytics.ts';
 import { trackEventFAB } from '@/utils/facebook.pixel.ts';
-import { CURRENT_DATE_AND_TIME } from '@/common/vars.ts';
+import { getFormattedDateWithTimezone } from '@/helpers/formatted.date.with.timezone.ts';
 
 interface ISignFormProps {
   toggleSuccessModal: (payload: boolean) => void;
@@ -68,15 +68,17 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
   const { control, handleSubmit } = hookForm;
 
   const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
+    console.log(getFormattedDateWithTimezone());
+
     logEventGA('FormSubmission', {
       category: 'Form Interaction',
       form_name: 'Sign up',
-      submitted_at: CURRENT_DATE_AND_TIME,
+      submitted_at: getFormattedDateWithTimezone(),
     });
 
     trackEventFAB('FormSubmission', {
       formName: 'Sign up',
-      submittedAt: CURRENT_DATE_AND_TIME,
+      submittedAt: getFormattedDateWithTimezone(),
     });
 
     setIsLoading(true);
