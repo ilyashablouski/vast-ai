@@ -70,12 +70,12 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
   const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
     logEventGA('Form Submission', {
       category: 'Form Interaction',
-      label: 'Sign Up Form',
-      submittedAt: CURRENT_DATE_AND_TIME,
+      form_name: 'Sign up',
+      submitted_at: CURRENT_DATE_AND_TIME,
     });
 
     trackEventFAB('Form Submission', {
-      formName: 'Sign up form',
+      formName: 'Sign up',
       submittedAt: CURRENT_DATE_AND_TIME,
     });
 

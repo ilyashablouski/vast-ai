@@ -20,9 +20,9 @@ const Header = () => {
     toggleModal(true);
     logEventGA('Button Click', {
       category: 'User Interaction',
-      buttonName: 'Login button',
+      buttonName: 'Login',
     });
-    trackEventFAB('ButtonClick', { buttonName: 'Login button' });
+    trackEventFAB('ButtonClick', { buttonName: 'Login' });
   };
 
   return (

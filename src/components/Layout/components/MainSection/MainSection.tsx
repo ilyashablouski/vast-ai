@@ -6,10 +6,22 @@ import { ArrowDown as ArrowDownIcon, ArrowUp as ArrowUpIcon, Geo as GeoIcon } fr
 import { configs } from '@/mock/configurations.ts';
 import useGlobalContext from '@/store/context.tsx';
 import useMediaQueries from '@/hooks/useMediaQueries.ts';
+import { logEventGA } from '@/utils/google.analytics.ts';
+import { trackEventFAB } from '@/utils/facebook.pixel.ts';
 
 const MainSection = () => {
   const { toggleModal } = useGlobalContext();
   const { isMobile } = useMediaQueries();
+
+  const handleClick = () => {
+    toggleModal(true);
+
+    logEventGA('Button Click', {
+      category: 'User Interaction',
+      buttonName: 'Rent',
+    });
+    trackEventFAB('ButtonClick', { buttonName: 'Rent' });
+  };
 
   return (
     <Container sx={{ mt: { xs: 4, md: 6 } }} maxWidth="lg">
@@ -92,12 +104,7 @@ const MainSection = () => {
                 <Typography variant="h3" mb={1.5} textAlign="right">
                   $&nbsp;{config.rent}/hr
                 </Typography>
-                <Button
-                  variant="contained"
-                  size="small"
-                  sx={{ mt: 'auto' }}
-                  onClick={() => toggleModal(true)}
-                >
+                <Button variant="contained" size="small" sx={{ mt: 'auto' }} onClick={handleClick}>
                   RENT
                 </Button>
               </Stack>
