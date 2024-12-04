@@ -7,7 +7,8 @@ import { Logo as LogoIcon } from '@components/icons';
 import useGlobalContext from '@/store/context.tsx';
 import useDarkMode from '@/hooks/useDarkMode.ts';
 import useMediaQueries from '@/hooks/useMediaQueries.ts';
-import { logEvent } from '@/utils/analytics.ts';
+import { logEventGA } from '@/utils/google.analytics.ts';
+import { trackEventFAB } from '@/utils/facebook.pixel.ts';
 
 const Header = () => {
   const { toggleModal } = useGlobalContext();
@@ -17,7 +18,11 @@ const Header = () => {
 
   const handleClick = () => {
     toggleModal(true);
-    logEvent('User Interaction', 'Button Click', 'Login button');
+    logEventGA('Button Click', {
+      category: 'User Interaction',
+      buttonName: 'Login button',
+    });
+    trackEventFAB('ButtonClick', { buttonName: 'Login button' });
   };
 
   return (

@@ -6,14 +6,10 @@ export const initGoogleAnalytics = () => {
   ReactGA.initialize(GA_MEASUREMENT_ID);
 };
 
-export const logPageView = () => {
+export const logPageViewGA = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
 };
 
-export const logEvent = (category: string, action: string, label?: string) => {
-  ReactGA.event({
-    category,
-    action,
-    label,
-  });
+export const logEventGA = (eventName: string, params?: Record<string, string>) => {
+  ReactGA.event(eventName, params);
 };

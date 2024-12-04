@@ -7,7 +7,9 @@ import Layout from '@components/Layout';
 import { GlobalProvider } from '@/store';
 import { createTheme } from '@/theme';
 import useDarkMode from '@/hooks/useDarkMode.ts';
-import { initGoogleAnalytics, logPageView } from '@/utils/analytics.ts';
+import { initGoogleAnalytics, logPageViewGA } from '@/utils/google.analytics.ts';
+import { initFacebookPixel, logPageViewFAB } from '@/utils/facebook.pixel.ts';
+import { isLocalhost, isProduction } from '@/common/vars.ts';
 
 const createMuiTheme = (theme: THEMES) =>
   createTheme({
@@ -22,12 +24,12 @@ const App: FC = () => {
   const theme = createMuiTheme(isDarkMode ? THEMES.DARK : THEMES.LIGHT);
 
   useEffect(() => {
-    const isLocalhost = window.location.hostname === 'localhost';
-    const isProduction = process.env.NODE_ENV === 'production';
-
     if (isProduction && !isLocalhost) {
       initGoogleAnalytics();
-      logPageView();
+      logPageViewGA();
+
+      initFacebookPixel();
+      logPageViewFAB();
     }
   }, []);
 

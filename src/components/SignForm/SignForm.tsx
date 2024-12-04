@@ -16,7 +16,9 @@ import { getFormDefaultValuesFromConfig } from '@components/SignForm/helpers.ts'
 import { formFields, yupSchema } from '@components/SignForm/settings.ts';
 import { Error as ErrorIcon } from '@components/icons';
 import useGlobalContext from '@/store/context.tsx';
-import { logEvent } from '@/utils/analytics.ts';
+import { logEventGA } from '@/utils/google.analytics.ts';
+import { trackEventFAB } from '@/utils/facebook.pixel.ts';
+import { CURRENT_DATE_AND_TIME } from '@/common/vars.ts';
 
 interface ISignFormProps {
   toggleSuccessModal: (payload: boolean) => void;
@@ -66,7 +68,16 @@ const SignForm: FC<ISignFormProps> = ({ toggleSuccessModal }) => {
   const { control, handleSubmit } = hookForm;
 
   const onSubmit: SubmitHandler<ISignFormSubmit> = async (data) => {
-    logEvent('Form Interaction', 'Form Submission', 'Sign up form');
+    logEventGA('Form Submission', {
+      category: 'Form Interaction',
+      label: 'Sign Up Form',
+      submittedAt: CURRENT_DATE_AND_TIME,
+    });
+
+    trackEventFAB('Form Submission', {
+      formName: 'Sign up form',
+      submittedAt: CURRENT_DATE_AND_TIME,
+    });
 
     setIsLoading(true);
     setIsError(false);
